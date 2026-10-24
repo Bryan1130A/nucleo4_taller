@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Usuario } from '../../services/usuario';
+import { Router } from '@angular/router';
+import { Fire } from '../../services/fire';
+import { Api } from '../../services/api';
+import { usarFirebase } from '../../services/config';
 
 @Component({
   imports: [FormsModule],
@@ -10,14 +13,33 @@ import { Usuario } from '../../services/usuario';
 })
 export class Registro {
 
-  email=""
-  password=""
-  name=""
+  name = ""
+  email = ""
+  password = ""
+  mensaje = signal("")
 
-  servicio = inject( Usuario )
+  servicio = usarFirebase ? inject(Fire) : inject(Api)
+  router = inject(Router)
 
-  registrar(formulario: any){
-    this.servicio.postUsuario( formulario.value).subscribe()
+  async registrar() {
+    if (this.name == "" || this.email == "" || this.password == "") {
+      this.mensaje.set("llena todos los campos")
+      return
+    }
+
+    const usuarios = await this.servicio.getUsuarios()
+    if (usuarios.find((u: any) => u.email == this.email)) {
+      this.mensaje.set("ese correo ya esta registrado")
+      return
+    }
+
+    await this.servicio.postUsuario({
+      nombre: this.name,
+      email: this.email,
+      password: this.password,
+      rol: "estandar"
+    })
+
+    this.router.navigate(["/login"])
   }
-
 }

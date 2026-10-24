@@ -1,29 +1,33 @@
-<select [(ngModel)]="tipo" (ngModelChange)="cambiarTipo($event)">
-    <option value="electrico">Electrico</option>
-    <option value="planta">Planta</option>
-    <option value="psiquico">Psiquico</option>
-    <option value="fuego">Fuego</option>
+<h3>Catalogo de libros</h3>
+
+<label for="">Filtrar por genero: </label>
+<select class="form-select w-auto d-inline-block mb-3" [(ngModel)]="genero">
+    <option value="">Todos</option>
+    <option value="novela">Novela</option>
+    <option value="fantasia">Fantasia</option>
+    <option value="historia">Historia</option>
+    <option value="poesia">Poesia</option>
 </select>
 
-<table class="table table-striped">
+<table class="table table-bordered table-hover bg-white">
     <thead>
         <tr>
-            <th>NOMBRE</th>
-            <th>DAÑO</th>
-            <th>TIPO</th>
+            <th>TITULO</th>
+            <th>AUTOR</th>
+            <th>GENERO</th>
+            <th>PRECIO</th>
         </tr>
     </thead>
     <tbody>
-
-        @for ( pokemon of pokeArreglo ; track $index) {
-        @if(tipo == pokemon.tipo){
+        @for (libro of libros(); track libro.id) {
+        @if (genero == "" || genero == libro.genero) {
             <tr>
-                <td>{{pokemon.nombre}}</td>
-                <td>{{pokemon.danio}}</td>
-                <td>{{pokemon.tipo}}</td>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.genero }}</td>
+                <td>{{ libro.precio | currency }}</td>
             </tr>
         }
-
         }
     </tbody>
 </table>

@@ -1,17 +1,18 @@
-<form (ngSubmit)="registrar(formulario)" #formulario="ngForm">
-    <label for="">Nombre</label>
-    <input type="text" name="name" [(ngModel)]=name>
-    <br>
+<div class="caja">
+    <h3>Registro</h3>
 
-    <label for="">correo</label>
-    <input type="text" name="email" [(ngModel)]=email>
-    <br>
+    <form (ngSubmit)="registrar()">
+        <label for="">Nombre</label>
+        <input type="text" class="form-control mb-2" name="name" [(ngModel)]="name">
 
-    <label for="">Password</label>
-    <input type="text" name="password" [(ngModel)]=password>
-    <br>
+        <label for="">Correo</label>
+        <input type="text" class="form-control mb-2" name="email" [(ngModel)]="email">
 
-    <button type="submit">registrar</button>
+        <label for="">Contraseña</label>
+        <input type="password" class="form-control mb-3" name="password" [(ngModel)]="password">
 
+        <button type="submit" class="btn btn-dark w-100">Registrarme</button>
+    </form>
 
-</form>
+    <p class="mensaje">{{ mensaje() }}</p>
+</div>

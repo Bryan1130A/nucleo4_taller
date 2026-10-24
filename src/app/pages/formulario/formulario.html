@@ -1,12 +1,46 @@
-<form (ngSubmit)="guardar(formulario)" #formulario="ngForm">
+<h3>Gestion de libros</h3>
 
-    <input type="text" name="nombre" [(ngModel)]=nombre placeholder="nombre">
-    <input type="text" name="danio" [(ngModel)]=danio placeholder="daño">
-    <input type="text" name="tipo" [(ngModel)]=tipo placeholder="tipo">
+<form (ngSubmit)="guardar()" class="d-flex flex-wrap gap-2 mb-2">
+    <input type="text" class="form-control w-auto" name="titulo" [(ngModel)]="titulo" placeholder="titulo">
+    <input type="text" class="form-control w-auto" name="autor" [(ngModel)]="autor" placeholder="autor">
+    <select class="form-select w-auto" name="genero" [(ngModel)]="genero">
+        <option value="novela">Novela</option>
+        <option value="fantasia">Fantasia</option>
+        <option value="historia">Historia</option>
+        <option value="poesia">Poesia</option>
+    </select>
+    <input type="number" class="form-control w-auto" name="precio" [(ngModel)]="precio" placeholder="precio">
 
-    <button type="submit">Guardar</button>
-
+    <button type="submit" class="btn btn-success">{{ id == "" ? "Guardar" : "Actualizar" }}</button>
+    @if (id != "") {
+        <button type="button" class="btn btn-secondary" (click)="limpiar()">Cancelar</button>
+    }
 </form>
 
-<br>
-<button (click)="cerrar()">CERRAR</button>
+<p class="mensaje">{{ mensaje() }}</p>
+
+<table class="table table-bordered table-hover bg-white">
+    <thead>
+        <tr>
+            <th>TITULO</th>
+            <th>AUTOR</th>
+            <th>GENERO</th>
+            <th>PRECIO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (libro of libros(); track libro.id) {
+            <tr>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.genero }}</td>
+                <td>{{ libro.precio | currency }}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-1" (click)="editar(libro)">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="eliminar(libro.id)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

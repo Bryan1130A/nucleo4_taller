@@ -1,10 +1,9 @@
-//IMPLEMENTAR UN FILTRO POR TIPO DE POKEMON () => Select
-//IMPLEMNATR OTRO FILTRO POR DAÑO (MENORES 30) => Input
-
-import { Component, inject } from '@angular/core';
-import { Fire } from '../../services/fire';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Fire } from '../../services/fire';
+import { Api } from '../../services/api';
+import { usarFirebase } from '../../services/config';
 
 @Component({
   imports: [CommonModule, FormsModule],
@@ -12,30 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './tabla.css',
   templateUrl: './tabla.html',
 })
-export class Tabla {
+export class Tabla implements OnInit {
 
-  servicios = inject(Fire)
+  servicio = usarFirebase ? inject(Fire) : inject(Api)
 
-  pokemons = this.servicios.getPokemons()
+  libros = signal<any[]>([])
+  genero = ""
 
-  pokeArreglo = Object.entries(this.pokemons).map(  ([key, val]) => ({
-    nombre: key,
-    tipo: val.tipo,
-    danio: val.danio
+  async ngOnInit() {
+    this.libros.set(await this.servicio.getLibros())
   }
-)  )
-
-  tipo=""
-
-  cambiarTipo( valor: string){
-    this.tipo = valor
-    if( this.tipo ==  "psiquico"){
-      localStorage.setItem("token", "true")
-    }else{
-      localStorage.setItem("token", "false")
-    }
-  }
-
-
-
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Sesion } from '../../services/sesion';
 
 @Component({
   imports: [RouterLink],
@@ -7,4 +8,13 @@ import { RouterLink } from '@angular/router';
   styleUrl: './nav-bar.css',
   templateUrl: './nav-bar.html',
 })
-export class NavBar {}
+export class NavBar {
+
+  sesion = inject(Sesion)
+  router = inject(Router)
+
+  salir() {
+    this.sesion.cerrar()
+    this.router.navigate(["/login"])
+  }
+}

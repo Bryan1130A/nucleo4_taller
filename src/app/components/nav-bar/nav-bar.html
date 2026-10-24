@@ -1,27 +1,34 @@
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #5c3d2e;">
   <div class="container-fluid">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="/formulario">Formulario</a>
-      </li>
-     <li class="nav-item">
-        <a class="nav-link" routerLink="/tabla">Tabla</a>
-      </li>
+    <span class="navbar-brand">Libreria</span>
+    <ul class="navbar-nav me-auto">
+      @if (sesion.estaLogueado()) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tabla">Libros</a>
+        </li>
+      }
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/privado">Privado</a>
-      </li>
+      @if (sesion.esAdmin()) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/formulario">Gestion</a>
+        </li>
+      }
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/registro">Registro</a>
-      </li>
-
-
-    
+      @if (!sesion.estaLogueado()) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/registro">Registro</a>
+        </li>
+      }
     </ul>
+
+    @if (sesion.estaLogueado()) {
+      <span class="navbar-text text-white">
+        {{ sesion.usuario().nombre }} ({{ sesion.usuario().rol }})
+        <button class="btn btn-sm btn-outline-light ms-2" (click)="salir()">Salir</button>
+      </span>
+    }
   </div>
 </nav>

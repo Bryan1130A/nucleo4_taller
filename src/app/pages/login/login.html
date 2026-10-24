@@ -1,15 +1,16 @@
-<form (ngSubmit)="login()" >
+<div class="caja">
+    <h3>Iniciar sesion</h3>
 
+    <form (ngSubmit)="login()">
+        <label for="">Correo</label>
+        <input type="text" class="form-control mb-2" name="email" [(ngModel)]="email">
 
-    <label for="">correo</label>
-    <input type="text" name="email" [(ngModel)]=email>
-    <br>
+        <label for="">Contraseña</label>
+        <input type="password" class="form-control mb-3" name="password" [(ngModel)]="password">
 
-    <label for="">Password</label>
-    <input type="text" name="password" [(ngModel)]=password>
-    <br>
+        <button type="submit" class="btn btn-dark w-100">Entrar</button>
+    </form>
 
-    <button type="submit">login</button>
-
-
-</form>
+    <p class="mensaje">{{ mensaje() }}</p>
+    <a routerLink="/registro">no tienes cuenta? registrate</a>
+</div>

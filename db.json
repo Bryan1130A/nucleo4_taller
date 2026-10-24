@@ -1,0 +1,14 @@
+{
+  "usuarios": [
+    { "id": "1", "nombre": "admin", "email": "admin@libreria.com", "password": "1234", "rol": "admin" },
+    { "id": "2", "nombre": "ana", "email": "ana@gmail.com", "password": "1234", "rol": "estandar" }
+  ],
+  "libros": [
+    { "id": "1", "titulo": "Cien años de soledad", "autor": "Gabriel Garcia Marquez", "genero": "novela", "precio": 15 },
+    { "id": "2", "titulo": "Don Quijote de la Mancha", "autor": "Miguel de Cervantes", "genero": "novela", "precio": 20 },
+    { "id": "3", "titulo": "Harry Potter y la piedra filosofal", "autor": "J.K. Rowling", "genero": "fantasia", "precio": 18 },
+    { "id": "4", "titulo": "El Hobbit", "autor": "J.R.R. Tolkien", "genero": "fantasia", "precio": 17 },
+    { "id": "5", "titulo": "Sapiens", "autor": "Yuval Noah Harari", "genero": "historia", "precio": 22 },
+    { "id": "6", "titulo": "Huasipungo", "autor": "Jorge Icaza", "genero": "novela", "precio": 12 }
+  ]
+}

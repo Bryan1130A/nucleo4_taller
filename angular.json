@@ -2,11 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "89eddba9-8d6b-42c4-a504-d01ba87a33a0"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "app-02": {
+    "app-libros": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -18,12 +19,7 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            "assets": [],
             "styles": [
               "src/styles.css"
             ]
@@ -56,13 +52,16 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "app-02:build:production"
+              "buildTarget": "app-libros:build:production"
             },
             "development": {
-              "buildTarget": "app-02:build:development"
+              "buildTarget": "app-libros:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "prebundle": false
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test"

@@ -1,0 +1,17 @@
+{
+  "usuarios": [
+    {
+      "email": "ana@yop.com",
+      "name": "ana",
+      "password": "1111",
+      "id": "LVU2m8D7My4"
+    },
+    {
+      "email": "juan@yop.com",
+      "name": "juan",
+      "password": "2222",
+      "id": "9inRKPnf1qQ"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

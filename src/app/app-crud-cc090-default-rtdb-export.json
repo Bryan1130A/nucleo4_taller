@@ -1,0 +1,17 @@
+{
+  "pokemons": {
+    "Charizard": {
+      "danio": "50",
+      "tipo": "fuego"
+    },
+    "Ditto": {
+      "danio": "50",
+      "tipo": "planta"
+    },
+    {
+      "nombre": "pikachu",
+      "danio": "30",
+      "tipo": "electrico"
+    }
+  }
+}

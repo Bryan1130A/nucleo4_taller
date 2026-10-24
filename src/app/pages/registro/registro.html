@@ -1,0 +1,17 @@
+<form (ngSubmit)="registrar(formulario)" #formulario="ngForm">
+    <label for="">Nombre</label>
+    <input type="text" name="name" [(ngModel)]=name>
+    <br>
+
+    <label for="">correo</label>
+    <input type="text" name="email" [(ngModel)]=email>
+    <br>
+
+    <label for="">Password</label>
+    <input type="text" name="password" [(ngModel)]=password>
+    <br>
+
+    <button type="submit">registrar</button>
+
+
+</form>

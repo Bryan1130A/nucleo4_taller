@@ -1,0 +1,29 @@
+<select [(ngModel)]="tipo" (ngModelChange)="cambiarTipo($event)">
+    <option value="electrico">Electrico</option>
+    <option value="planta">Planta</option>
+    <option value="psiquico">Psiquico</option>
+    <option value="fuego">Fuego</option>
+</select>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>NOMBRE</th>
+            <th>DAÑO</th>
+            <th>TIPO</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @for ( pokemon of pokeArreglo ; track $index) {
+        @if(tipo == pokemon.tipo){
+            <tr>
+                <td>{{pokemon.nombre}}</td>
+                <td>{{pokemon.danio}}</td>
+                <td>{{pokemon.tipo}}</td>
+            </tr>
+        }
+
+        }
+    </tbody>
+</table>
